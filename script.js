@@ -73,31 +73,41 @@ function getIcon(file) {
 
 // Function to generate popup content
 function generatePopupContent(props, type) {
-  // Start with name and type
+  // Generate random contact - ADD THIS AT FUNCTION START
+  const contactNumber = '9' + Math.floor(Math.random() * 900000000 + 100000000).toString();
+  
+  // Custom messages 
+  const customMessages = {
+    'Hospitals': `Emergency contact: ${contactNumber}`,
+    'Schools': `Office contact: ${contactNumber}`,
+    'Police Stations': `Duty officer: ${contactNumber}`,
+    'Fire Stations': `Emergency hotline: ${contactNumber}`,
+    'Post Offices': `Postmaster: ${contactNumber}`,
+    'Town Halls': `Administrative office: ${contactNumber}`,
+    'Prisons': `Security desk: ${contactNumber}`
+  };
+
   let content = `<div class="popup-header">`;
   content += `<strong>${props.name || 'Unnamed'}</strong>`;
   content += `<div class="popup-type">${type}</div>`;
   content += `</div>`;
   
-  // Collect non-null attributes
+  content += `<div class="popup-contact">
+    <div class="popup-row">
+      <span class="popup-key">Custom msg:</span>
+      <span class="popup-value">${customMessages[type] || `Contact: ${contactNumber}`}</span>
+    </div>
+  </div>`;
+  
   const attributes = [];
   for (const key in props) {
     const value = props[key];
-    // Skip if value is null/undefined or key is 'name'
     if (value && value !== 'NULL' && key !== 'name') {
-      // Format key to be more readable
-      const formattedKey = key
-        .replace(/_/g, ' ')
-        .replace(/\b\w/g, l => l.toUpperCase());
-        
-      attributes.push({
-        key: formattedKey,
-        value: value
-      });
+      const formattedKey = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      attributes.push({ key: formattedKey, value: value });
     }
   }
   
-  // Add attributes with scrollable container
   content += `<div class="popup-details ${attributes.length > 3 ? 'scrollable' : ''}">`;
   
   if (attributes.length === 0) {

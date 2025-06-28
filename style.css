@@ -705,3 +705,16 @@ body {
   padding: 10px 15px;
   pointer-events: none;
 }
+
+.popup-contact {
+  background-color: #f8f9fa;
+  padding: 8px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  border-left: 3px solid #2c6fb7;
+}
+
+.popup-contact .popup-value {
+  font-weight: bold;
+  color: #d9534f; /* Red for emphasis */
+}
