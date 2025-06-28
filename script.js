@@ -484,9 +484,24 @@ const expandBtn = document.getElementById('expandBtn');
 const toolPanel = document.getElementById('toolPanel');
 const togglePanelBtn = document.getElementById('togglePanelBtn');
 
-togglePanelBtn.addEventListener('click', () => {
+// togglePanelBtn event listener 
+togglePanelBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
   toolPanel.classList.toggle('collapsed');
-  expandBtn.classList.toggle('rotated');
+  
+  // Mobile-specific adjustments
+  if (isMobile) {
+    if (toolPanel.classList.contains('collapsed')) {
+      // When closing on mobile
+      expandBtn.style.bottom = '10px';
+    } else {
+      // When opening on mobile
+      expandBtn.style.bottom = '60px';
+      closeAllPanels(); // Close other panels if open
+    }
+  } else {
+    expandBtn.classList.toggle('rotated');
+  }
 });
 
 // Legend Toggle Button
@@ -718,6 +733,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Detect mobile and adjust UI
   if (isMobile) {
     document.body.classList.add('mobile');
+
+      toolPanel.style.bottom = '60px';
+  expandBtn.style.bottom = '10px';
+  expandBtn.style.right = '10px';
     
     // Set topbar height CSS variable
     const topbar = document.getElementById('topbar');

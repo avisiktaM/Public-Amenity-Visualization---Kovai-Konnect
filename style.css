@@ -485,9 +485,14 @@ body {
 
 /* Mobile Responsive Design */
 @media (max-width: 768px) {
-  /* Container adjustments */
-  #container {
-    flex-direction: column;
+  #toolPanel.collapsed {
+    display: none;
+  }
+  
+  #toolPanel:not(.collapsed) {
+    display: flex !important; 
+    bottom: 60px !important; 
+    right: 10px !important;
   }
   
   /* Topbar adjustments */
