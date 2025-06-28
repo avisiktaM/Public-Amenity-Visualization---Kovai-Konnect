@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Character encoding declaration -->
+  <meta charset="UTF-8" />
+  
+  <!-- Responsive viewport configuration with scaling restrictions -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  
+  <!-- Page title -->
+  <title>Kovai Konnect</title>
+  
+  <!-- Local stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Leaflet map library CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  
+  <!-- Leaflet map library JavaScript -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  
+  <!-- <style>
+    /* CSS root variables for consistent theming */
+    :root {
+      --topbar-height: 70px; /* Defines top bar height */
+    }
+  </style> -->
+</head>
+<body>
+  <!-- Primary header section -->
+  <div id="topbar">Kovai Konnect</div>
+
+  <!-- Main content container -->
+  <div id="container">
+    <!-- Sidebar section for chart display -->
+    <div id="sidebar">
+      <!-- Sidebar visibility toggle control -->
+      <button id="sidebarToggle" aria-label="Toggle sidebar">
+        <img src="data/icons/sidebar.png" alt="Menu" />
+      </button>
+      <!-- Canvas element for amenity chart rendering -->
+      <canvas id="amenityChart"></canvas>
+    </div>
+
+    <!-- Map display and control section -->
+    <div id="mapArea">
+      <!-- Container for map visualization -->
+      <div id="map"></div>
+
+      <!-- Expand/collapse control for tool panel -->
+      <div id="expandBtn">
+        <img src="data/icons/down_button.png" alt="expand" id="togglePanelBtn" />
+      </div>
+
+      <!-- Location search component -->
+      <div id="searchContainer" class="hidden">
+        <input type="text" id="searchInput" placeholder="Search location..." autocomplete="off" />
+        <div class="search-buttons">
+          <button id="searchSubmit">Go</button>
+          <button id="resetView">Reset</button>
+        </div>
+        <!-- Dynamic search suggestions container -->
+        <ul id="searchSuggestions" class="hidden"></ul>
+      </div>
+
+      <!-- Tool panel for map controls -->
+      <div id="toolPanel" class="collapsed">
+        <!-- Search activation button -->
+        <button id="searchBtn" title="Search" class="tool-button">
+          <img src="data/icons/search.png" alt="search" />
+        </button>
+        
+        <!-- Legend control container -->
+        <div class="tool-container">
+          <button id="legendBtn" title="Legend" class="tool-button">
+            <img src="data/icons/legend.png" alt="legend" />
+          </button>
+          <!-- Collapsible legend panel -->
+          <div id="legendPanel" class="collapsible-panel hidden">
+            <ul id="amenityList"></ul>
+          </div>
+        </div>
+        
+        <!-- Map layer control container -->
+        <div class="tool-container">
+          <button id="featureLayerBtn" title="Layers" class="tool-button">
+            <img src="data/icons/feature_layer.png" alt="feature_layer" />
+          </button>
+          <!-- Collapsible layer selection panel -->
+          <div id="layerPanel" class="collapsible-panel hidden">
+            <ul id="baseMapList">
+              <!-- Base map options (dynamically populated) -->
+              <li data-layer="default">Default</li>
+              <li data-layer="satellite">Satellite</li>
+              <li data-layer="terrain">Terrain</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Mobile-specific sidebar toggle -->
+      <div class="mobile-sidebar-toggle">
+        <img src="data/icons/sidebar.png" alt="Show chart" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Application scripts -->
+  <script src="script.js"></script>
+  
+  <!-- Chart.js library for data visualization -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</body>
+</html>
